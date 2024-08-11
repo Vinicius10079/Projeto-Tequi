@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="banco_de_dados_tequi.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1527"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="CadastroEmpresas" custom_title="0" dock_id="1" table="4,16:mainCadastroEmpresas"/><dock_state state="000000ff00000000fd00000001000000020000043c000002b6fc0100000001fb000000160064006f0063006b00420072006f007700730065003101000000000000043c0000011e00ffffff0000025e0000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">-- Criação da tabela Cadastro de Empresas
+CREATE TABLE IF NOT EXISTS CadastroEmpresas (
+    CNPJ TEXT PRIMARY KEY,
+    Nome TEXT NOT NULL,
+    ContatoPrincipal TEXT NOT NULL,
+    Senha TEXT NOT NULL,
+    DataCadastro TEXT NOT NULL
+);
+
+-- Criação da tabela Chamados em Aberto
+CREATE TABLE IF NOT EXISTS ChamadosEmAberto (
+    CNPJ TEXT PRIMARY KEY,
+    Nome TEXT NOT NULL,
+    Chamados TEXT,
+    DescricoesProblema TEXT,
+    ContatoPrincipal TEXT NOT NULL,
+    DataChamado TEXT NOT NULL,
+    FOREIGN KEY (CNPJ) REFERENCES CadastroEmpresas (CNPJ)
+);
+
+-- Criação da tabela Tabela de Contatos
+CREATE TABLE IF NOT EXISTS TabelaContatos (
+    CNPJ TEXT PRIMARY KEY,
+    Nome TEXT NOT NULL,
+    ContatoPrincipal TEXT NOT NULL,
+    DataChamado TEXT NOT NULL,
+    FOREIGN KEY (CNPJ) REFERENCES CadastroEmpresas (CNPJ)
+);
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
