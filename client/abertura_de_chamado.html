@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abertura de Chamado</title>
+    <link rel="stylesheet" href="design.css">
+</head>
+<body>
+    <h1>Abertura de Chamado</h1>
+    <form id="chamadoForm">
+        <label for="tipoChamado">Tipo de Chamado:</label>
+        <br>
+        <input type="checkbox" id="consultoria" name="tipoChamado" value="Consultoria"> Consultoria
+        <br>
+        <input type="checkbox" id="manutencaoSoftware" name="tipoChamado" value="Manutenção de Software"> Manutenção de Software
+        <br>
+        <input type="checkbox" id="manutencaoHardware" name="tipoChamado" value="Manutenção de Hardware"> Manutenção de Hardware
+        <br>
+        <input type="checkbox" id="aplicacaoSistemas" name="tipoChamado" value="Aplicação de Sistemas"> Aplicação de Sistemas
+        <br><br>
+        <label for="descricaoProblema">Descrição do Problema:</label>
+        <br>
+        <textarea id="descricaoProblema" name="descricaoProblema" required></textarea>
+        <br>
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj" required>
+        <br>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Enviar Chamado</button>
+    </form>
+
+    <script src="scripts/abertura_de_chamado.js"></script>
+</body>
+</html>

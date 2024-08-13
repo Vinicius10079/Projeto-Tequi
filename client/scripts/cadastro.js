@@ -1,10 +1,11 @@
-document.getElementById('registerForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const CNPJ = document.getElementById('CNPJ').value;
-    const Nome = document.getElementById('Nome').value;
-    const ContatoPrincipal = document.getElementById('ContatoPrincipal').value;
-    const Senha = document.getElementById('Senha').value;
-
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const CNPJ = document.getElementById('cnpj').value;
+    const Nome = document.getElementById('nome').value;
+    const ContatoPrincipal = document.getElementById('contatoPrincipal').value;
+    const Senha = document.getElementById('password').value;
+    
     fetch('/register', {
         method: 'POST',
         headers: {
@@ -13,6 +14,15 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         body: JSON.stringify({ CNPJ, Nome, ContatoPrincipal, Senha })
     })
     .then(response => response.text())
-    .then(data => alert(data))
-    .catch(error => console.error('Error:', error));
+    .then(data => {
+        if (data === 'Cadastro bem-sucedido') {
+            alert(data);
+            window.location.href = 'abertura_de_chamado.html';
+        } else {
+            alert(data);
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
 });

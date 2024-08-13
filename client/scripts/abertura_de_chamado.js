@@ -1,18 +1,28 @@
-document.getElementById('ticketForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const CNPJ = document.getElementById('CNPJ').value;
-    const Senha = document.getElementById('Senha').value;
-    const Chamados = Array.from(document.querySelectorAll('input[name="Chamados"]:checked')).map(cb => cb.value);
-    const DescricoesProblema = document.getElementById('DescricoesProblema').value;
+document.addEventListener('DOMContentLoaded', () => {
+    const chamadoForm = document.getElementById('chamadoForm');
+    
+    if (!chamadoForm) {
+        console.error('Formulário de chamado não encontrado');
+        return;
+    }
 
-    fetch('/openTicket', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ CNPJ, Senha, Chamados, DescricoesProblema })
-    })
-    .then(response => response.text())
-    .then(data => alert(data))
-    .catch(error => console.error('Error:', error));
+    chamadoForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        
+        const tipoChamado = Array.from(document.querySelectorAll('input[name="tipoChamado"]:checked')).map(el => el.value);
+        const descricaoProblema = document.getElementById('descricaoProblema').value;
+        const cnpj = document.getElementById('cnpj').value;
+        const senha = document.getElementById('password').value;
+
+        const response = await fetch('/abertura_de_chamado', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ tipoChamado, descricaoProblema, cnpj, senha })
+        });
+
+        const result = await response.text();
+        alert(result);
+    });
 });
