@@ -1,29 +1,24 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const CNPJ = document.getElementById('cnpj').value;
-        const Senha = document.getElementById('password').value;
-        
-        fetch('/login', {
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const cnpj = document.getElementById('cnpj').value;
+        const senha = document.getElementById('senha').value;
+
+        const response = await fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ CNPJ, Senha })
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data); // Adicionado para depuração
-            if (data === 'Login bem-sucedido') {
-                alert(data);
-                window.location.href = 'abertura_de_chamado.html';
-            } else {
-                alert(data);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
+            body: JSON.stringify({ cnpj, senha })
         });
+
+        const result = await response.json();
+        if (response.ok) {
+            window.location.href = 'abertura_de_chamado.html';
+        } else {
+            alert(result.error);
+        }
     });
 });

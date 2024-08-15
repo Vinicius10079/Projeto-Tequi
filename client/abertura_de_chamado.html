@@ -7,31 +7,26 @@
     <link rel="stylesheet" href="design.css">
 </head>
 <body>
-    <h1>Abertura de Chamado</h1>
     <form id="chamadoForm">
-        <label for="tipoChamado">Tipo de Chamado:</label>
-        <br>
-        <input type="checkbox" id="consultoria" name="tipoChamado" value="Consultoria"> Consultoria
-        <br>
-        <input type="checkbox" id="manutencaoSoftware" name="tipoChamado" value="Manutenção de Software"> Manutenção de Software
-        <br>
-        <input type="checkbox" id="manutencaoHardware" name="tipoChamado" value="Manutenção de Hardware"> Manutenção de Hardware
-        <br>
-        <input type="checkbox" id="aplicacaoSistemas" name="tipoChamado" value="Aplicação de Sistemas"> Aplicação de Sistemas
-        <br><br>
-        <label for="descricaoProblema">Descrição do Problema:</label>
-        <br>
-        <textarea id="descricaoProblema" name="descricaoProblema" required></textarea>
-        <br>
         <label for="cnpj">CNPJ:</label>
         <input type="text" id="cnpj" name="cnpj" required>
-        <br>
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+        <fieldset>
+            <legend>Tipo de Chamado</legend>
+            <input type="checkbox" id="consultoria" name="chamados" value="Consultoria">
+            <label for="consultoria">Consultoria</label>
+            <input type="checkbox" id="software" name="chamados" value="Manutenção de Software">
+            <label for="software">Manutenção de Software</label>
+            <input type="checkbox" id="hardware" name="chamados" value="Manutenção de Hardware">
+            <label for="hardware">Manutenção de Hardware</label>
+            <input type="checkbox" id="sistemas" name="chamados" value="Aplicação de Sistemas">
+            <label for="sistemas">Aplicação de Sistemas</label>
+        </fieldset>
+        <label for="descricao">Descrição do Problema:</label>
+        <textarea id="descricao" name="descricao" required></textarea>
         <button type="submit">Enviar Chamado</button>
     </form>
-
     <script src="scripts/abertura_de_chamado.js"></script>
 </body>
 </html>

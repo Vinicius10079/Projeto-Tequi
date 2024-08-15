@@ -1,28 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const chamadoForm = document.getElementById('chamadoForm');
-    
-    if (!chamadoForm) {
-        console.error('Formulário de chamado não encontrado');
-        return;
-    }
-
-    chamadoForm.addEventListener('submit', async (event) => {
+    const form = document.getElementById('chamadoForm');
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        
-        const tipoChamado = Array.from(document.querySelectorAll('input[name="tipoChamado"]:checked')).map(el => el.value);
-        const descricaoProblema = document.getElementById('descricaoProblema').value;
+
         const cnpj = document.getElementById('cnpj').value;
-        const senha = document.getElementById('password').value;
+        const senha = document.getElementById('senha').value;
+        const descricao = document.getElementById('descricao').value;
+        const chamados = Array.from(document.querySelectorAll('input[name="chamados"]:checked')).map(el => el.value);
 
         const response = await fetch('/abertura_de_chamado', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ tipoChamado, descricaoProblema, cnpj, senha })
+            body: JSON.stringify({ cnpj, senha, chamados, descricao })
         });
 
-        const result = await response.text();
-        alert(result);
+        const result = await response.json();
+        if (response.ok) {
+            alert(result.message);
+        } else {
+            alert(result.error);
+        }
     });
 });
